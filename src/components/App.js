@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import data from '../data.json';
-import { Table, TableCell } from '../styled-components/Table';
+import { TableWrapper, Table, TableCell, TableButton } from '../styled-components/Table';
 
 class App extends Component {
   loopTableCells = (min, max, iterator) => {
@@ -21,18 +21,19 @@ class App extends Component {
         <div className="App-header">
           <h2>Welcome to React</h2>
         </div>
-        <div>
-          <Table width={data.red.width}>
+        <TableWrapper color={data.red.name} width={data.red.width}>
+          <Table>
             {this.loopTableCells(data.red.min, data.red.max, data.red.increment).map(number => (
               <TableCell key={number} className={`table-cell ${!number && 'gray'}`}>
-                {number ? number : 'gray'}
+                {number ? number : ''}
               </TableCell>
             ))}
 
           </Table>
-          <button>Button</button>
-          <button>Button</button>
-        </div>
+          <TableButton>Configure</TableButton>
+          <span className="right">{data.red.width}</span>
+
+        </TableWrapper>
 
       </div>
     );

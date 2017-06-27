@@ -1,5 +1,6 @@
 {
   "red": {
+    "name": "red",
     "min": 8,
     "max": 29,
     "width": "20%",
@@ -7,16 +8,18 @@
     "direction": "ltr-up"
   },
   "blue": {
-    "min": 8,
-    "max": 29,
-    "width": "20%",
-    "increment": 1,
-    "direction": "ltr-up"
+    "name": "blue",
+    "min": 47,
+    "max": 81,
+    "width": "40%",
+    "increment": 2,
+    "direction": "rtl-up"
   },
   "green": {
-    "min": 8,
-    "max": 29,
-    "width": "20%",
+    "name": "green",
+    "min":231,
+    "max": 247,
+    "width": "30%",
     "increment": 1,
     "direction": "ltr-up"
   }
