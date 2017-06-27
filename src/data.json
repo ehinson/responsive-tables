@@ -1,0 +1,23 @@
+{
+  "red": {
+    "min": 8,
+    "max": 30,
+    "width": "20%",
+    "increment": 1,
+    "direction": "ltr-up"
+  },
+  "blue": {
+    "min": 8,
+    "max": 29,
+    "width": "20%",
+    "increment": 1,
+    "direction": "ltr-up"
+  },
+  "green": {
+    "min": 8,
+    "max": 29,
+    "width": "20%",
+    "increment": 1,
+    "direction": "ltr-up"
+  }
+}
