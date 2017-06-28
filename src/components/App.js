@@ -1,12 +1,15 @@
 import React, { Component } from 'react';
 import data from '../data.json';
 import { TableWrapper, Table, TableCell, TableButton } from '../styled-components/Table';
+import ConfigurationForm from './ConfigurationForm';
 
 class App extends Component {
   loopTableCells = (min, max, iterator) => {
-    var table = [];
-    for (var i = min; i <= max; i++) {
+    let table = [];
+    let i = min;
+    while (i <= max) {
       table.push(i);
+      i = i + iterator;
     }
     if (table.length % 5 !== 0) {
       let gray = Array(5 - table.length % 5);
@@ -18,22 +21,22 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <div className="App-header">
-          <h2>Welcome to React</h2>
-        </div>
-        <TableWrapper color={data.red.name} width={data.red.width}>
-          <Table>
-            {this.loopTableCells(data.red.min, data.red.max, data.red.increment).map(number => (
-              <TableCell key={number} className={`table-cell ${!number && 'gray'}`}>
-                {number ? number : ''}
-              </TableCell>
-            ))}
+        {data.map(table => (
+          <TableWrapper color={table.name} width={table.width}>
+            <Table direction={table.direction}>
+              {this.loopTableCells(table.min, table.max, table.increment).map(number => (
+                <TableCell key={number} className={`table-cell ${!number && 'gray'}`}>
+                  {number ? number : ''}
+                </TableCell>
+              ))}
 
-          </Table>
-          <TableButton>Configure</TableButton>
-          <span className="right">{data.red.width}</span>
+            </Table>
+            <TableButton>Configure</TableButton>
+            <span className="right">{table.width}</span>
 
-        </TableWrapper>
+          </TableWrapper>
+        ))}
+        <ConfigurationForm color="red" name="red" />
 
       </div>
     );

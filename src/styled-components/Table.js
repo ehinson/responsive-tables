@@ -2,6 +2,9 @@ import styled from 'styled-components';
 
 export const TableWrapper = styled.div`
   width: ${props => props.width};
+  float: left;
+  margin: 20px;
+  box-sizing: border-box;
   border: 1px solid ${props => (props.color ? props.color : '#000000')};
   .right{
     float: right;
@@ -14,7 +17,7 @@ export const Table = styled.div`
   width: 100%;
   border: 1px solid #eeeeee;
   flex-direction: row;
-  flex-wrap: wrap-reverse;
+  flex-wrap: ${props => (props.direction === 'ltr-up' ? 'wrap-reverse' : 'wrap')};
   box-sizing: border-box;
 `;
 
@@ -35,9 +38,6 @@ export const TableCell = styled.div`
   }
   &:nth-child(5n+ 1){
     border-left: 1px solid gray;
-  }
-  &:nth-last-child(-n+5){
-    border-top: 1px solid gray;
   }
   &.gray{
     background-color: #666666;
