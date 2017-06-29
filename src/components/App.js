@@ -38,7 +38,7 @@ class App extends Component {
           <TableWrapper
             className={`${t.name === 'blue' ? 'hidden-md-down' : null}`}
             color={t.name}
-            width={`${t.width}`}
+            width={`${t.width}%`}
             key={index}
           >
             <Table direction={t.direction}>
@@ -50,7 +50,7 @@ class App extends Component {
 
             </Table>
             <TableButton onClick={() => this.handleConfigure(t, index)}>Configure</TableButton>
-            <span className="right">{t.width}</span>
+            <span className="right">{t.width + '%'}</span>
 
           </TableWrapper>
         ))}

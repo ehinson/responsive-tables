@@ -5,7 +5,7 @@ const tables = [
     name: 'red',
     min: 8,
     max: 29,
-    width: '20%',
+    width: '20',
     increment: 1,
     direction: 'ltr-up'
   },
@@ -13,7 +13,7 @@ const tables = [
     name: 'green',
     min: 231,
     max: 247,
-    width: '30%',
+    width: '30',
     increment: 1,
     direction: 'ltr-up'
   },
@@ -21,7 +21,7 @@ const tables = [
     name: 'blue',
     min: 47,
     max: 81,
-    width: '40%',
+    width: '40',
     increment: 2,
     direction: 'rtl-up'
   }
