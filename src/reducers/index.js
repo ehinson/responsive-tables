@@ -4,9 +4,9 @@ import table from './tableReducer';
 import form from './formReducer';
 
 export default combineReducers({
-  tables: tables,
-  table: table,
-  form: form
+  tables,
+  table,
+  form
 
   // More reducers if there are
   // can go here

@@ -5,89 +5,56 @@ import ConfigurationForm from './ConfigurationForm';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { editTable } from '../actions/tableActions';
+import { showForm, updateForm, clearForm } from '../actions/formActions';
 
 class App extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      editing: false,
-      currentTable: {},
-      allTables: [...data],
-      form: {}
-    };
   }
-  handleConfigure = (table, index) => {
-    this.setState({
-      editing: true,
-      currentTable: { index: [index], ...table }
-    });
+  handleConfigure = (mappedTable, index) => {
+    let currentTable = { index, ...mappedTable };
+    this.props.actions.showForm();
+    this.props.actions.editTable(currentTable);
   };
-  handleSubmit = () => {
-    let index = this.state.currentTable.index[0];
-    console.log(this.state.form);
-    let allTables = this.state.allTables;
-    allTables[index] = this.state.form;
-    this.setState({
-      ...this.state,
-      allTables
-    });
-  };
-  handleInputChange = name => e => {
-    e.preventDefault();
-    this.setState({
-      ...this.state,
-      form: {
-        ...this.state.form,
-        [e.target.name]: e.target.value,
-        name
-      }
-    });
-  };
+
   loopTableCells = (min, max, iterator) => {
-    let table = [];
-    let i = min;
+    let foo = [];
+    let i = parseInt(min);
     while (i <= max) {
-      table.push(i);
-      i = i + iterator;
+      foo.push(i);
+      i = i + parseInt(iterator);
     }
-    if (table.length % 5 !== 0) {
-      let gray = Array(5 - table.length % 5);
-      table.push(...gray);
+    if (foo.length % 5 !== 0) {
+      let gray = Array(5 - foo.length % 5);
+      foo.push(...gray);
     }
-    return table;
+    return foo;
   };
 
   render() {
-    console.log('Props', this.props);
     return (
       <div className="App">
-        {this.props.allTables.map((table, index) => (
+        {this.props.allTables.map((t, index) => (
           <TableWrapper
-            className={`${table.name === 'blue' ? 'hidden-md-down' : null}`}
-            color={table.name}
-            width={table.width}
+            className={`${t.name === 'blue' ? 'hidden-md-down' : null}`}
+            color={t.name}
+            width={`${t.width}`}
             key={index}
           >
-            <Table direction={table.direction}>
-              {this.loopTableCells(table.min, table.max, table.increment).map(number => (
+            <Table direction={t.direction}>
+              {this.loopTableCells(t.min, t.max, t.increment).map(number => (
                 <TableCell key={number} className={`table-cell ${!number && 'gray'}`}>
                   {number ? number : ''}
                 </TableCell>
               ))}
 
             </Table>
-            <TableButton onClick={() => this.handleConfigure(table, index)}>Configure</TableButton>
-            <span className="right">{table.width}</span>
+            <TableButton onClick={() => this.handleConfigure(t, index)}>Configure</TableButton>
+            <span className="right">{t.width}</span>
 
           </TableWrapper>
         ))}
-        {this.state.editing &&
-          <ConfigurationForm
-            color={this.state.currentTable.name}
-            name={this.state.currentTable.name}
-            onSubmit={this.handleSubmit}
-            onChange={this.handleInputChange(this.state.currentTable.name)}
-          />}
+        {this.props.form.editing && <ConfigurationForm color={this.props.currentTable.name} />}
 
       </div>
     );
@@ -102,7 +69,9 @@ const mapState = state => ({
 const mapDispatch = dispatch => ({
   actions: bindActionCreators(
     {
-      editTable
+      editTable,
+      showForm,
+      updateForm
     },
     dispatch
   )

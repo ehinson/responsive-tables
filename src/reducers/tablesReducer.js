@@ -31,6 +31,8 @@ export default (state = tables, action) => {
   switch (action.type) {
     case events.FETCH_TABLES:
       return action.allTables;
+    case events.UPDATE_TABLES:
+      return action.allTables;
     default:
       return state;
   }

@@ -1,16 +1,23 @@
 import * as events from '../events';
 
-export const showForm = configurationForm => {
+export const showForm = () => {
   return {
-    type: events.SHOW_FORM,
+    type: events.SHOW_FORM
+  };
+};
+
+export const submitForm = configurationForm => {
+  return {
+    type: events.SUBMIT_FORM,
     configurationForm
   };
 };
 
-export const updateForm = configurationForm => {
+export const updateForm = (name, value) => {
   return {
     type: events.UPDATE_FORM,
-    configurationForm
+    name,
+    value
   };
 };
 
