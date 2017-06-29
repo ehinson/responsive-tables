@@ -27,7 +27,7 @@ export const Table = styled.div`
   width: 100%;
   border-top: 1px solid #666666;
   border-left: 1px solid #666666;
-  flex-direction: ${props => (props.direction === 'rtl-up' ? 'row-reverse' : 'row')};;
+  flex-direction: ${props => (props.direction === 'rtl-up' ? 'row' : 'row-reverse')};
   flex-wrap: wrap-reverse;
   box-sizing: border-box;
 `;
