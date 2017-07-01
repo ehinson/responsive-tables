@@ -16,18 +16,44 @@ class App extends Component {
     this.props.actions.showForm();
     this.props.actions.editTable(currentTable);
   };
+  popNumbers = (array, width, direction = 1, newArray = []) => {
+    if (array.length === 0) {
+      return newArray.sort((a, b) => a - b);
+    }
+    let j = 0;
+    let poppedNumber;
+    let holder = [];
+    direction = -direction;
 
-  loopTableCells = (min, max, iterator) => {
+    while (j < width) {
+      poppedNumber = array.pop();
+      j++;
+      holder.push(poppedNumber);
+    }
+
+    if (direction === -1) {
+      holder.reverse();
+    }
+    newArray = Array.prototype.concat(newArray, holder);
+    let undefinedArray = [];
+    undefinedArray = newArray.filter(elem => {
+      elem !== undefined;
+    });
+    newArray = undefinedArray.concat(newArray);
+
+    return this.popNumbers(array, width, direction, newArray);
+  };
+
+  loopTableCells = (min, max, iterator, direction) => {
     let foo = [];
     let i = parseInt(min);
     while (i <= max) {
       foo.push(i);
       i = i + parseInt(iterator);
     }
-    if (foo.length % 5 !== 0) {
-      let gray = Array(5 - foo.length % 5);
-      foo.push(...gray);
-    }
+
+    return this.popNumbers(foo, 5);
+
     return foo;
   };
 
@@ -36,13 +62,13 @@ class App extends Component {
       <div className="App">
         {this.props.allTables.map((t, index) => (
           <TableWrapper
-            className={`${t.name === 'blue' ? 'hidden-md-down' : null}`}
+            className={`TableWrapper ${t.name === 'blue' ? 'hidden-md-down' : null}`}
             color={t.name}
             width={`${t.width}%`}
             key={index}
           >
             <Table direction={t.direction}>
-              {this.loopTableCells(t.min, t.max, t.increment).map(number => (
+              {this.loopTableCells(t.min, t.max, t.increment, t.direction).map(number => (
                 <TableCell key={number} className={`table-cell ${!number && 'gray'}`}>
                   {number ? number : ''}
                 </TableCell>

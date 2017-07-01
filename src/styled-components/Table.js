@@ -30,6 +30,7 @@ export const Table = styled.div`
   flex-direction: ${props => (props.direction === 'rtl-up' ? 'row' : 'row-reverse')};
   flex-wrap: wrap-reverse;
   box-sizing: border-box;
+  
 `;
 
 export const TableCell = styled.div`
