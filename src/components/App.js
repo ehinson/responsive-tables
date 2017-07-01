@@ -18,7 +18,7 @@ class App extends Component {
   };
   popNumbers = (array, width, direction = 1, newArray = []) => {
     if (array.length === 0) {
-      return newArray.sort((a, b) => a - b);
+      return newArray;
     }
     let j = 0;
     let poppedNumber;
@@ -51,10 +51,9 @@ class App extends Component {
       foo.push(i);
       i = i + parseInt(iterator);
     }
+    foo.reverse();
 
     return this.popNumbers(foo, 5);
-
-    return foo;
   };
 
   render() {

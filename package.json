@@ -1,5 +1,6 @@
 {
   "name": "responsive-tables",
+  "homepage": "https://ehinson.github.io/responsive-tables",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -11,12 +12,15 @@
     "styled-components": "^2.1.0"
   },
   "devDependencies": {
+    "gh-pages": "^1.0.0",
     "react-scripts": "1.0.7"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   }
 }
